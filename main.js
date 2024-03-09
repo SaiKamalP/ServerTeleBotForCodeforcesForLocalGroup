@@ -32,7 +32,9 @@ codeforces.getUpcomingContests().then(async contestList=>{
             };
         }
     }
-    await db.updateInformedContestIds(newInformedContestIds,informedContestIds);
+    if(newInformedContestIds.length>0){
+        await db.updateInformedContestIds(newInformedContestIds,informedContestIds);
+    }
 
    
 });
