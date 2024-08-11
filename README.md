@@ -11,10 +11,14 @@ Please refer to the project [TeleBotForCodeforcesForLocalGroup](https://github.c
 3. Running the code
    1. Requirements
       1. `nodeJs`
-      2. npm package `node-telegram-bot-api`
+      2. npm package `node-telegram-bot-api`, `puppeteer`
    2. Run `node main.js`
 4. Running repeatedly on server
    1. You may use various tools to do this, as an example refer to `crontab` on linux
+
+## Customization
+
+To select what type of contests to push notifications update `CONTEST_TYPES_TO_INCLUDE` in `main.js`
 
 ## Development Setup
 
