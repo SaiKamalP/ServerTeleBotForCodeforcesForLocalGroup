@@ -48,7 +48,44 @@ async function getUpcomingContests() {
     
 }
 
+// Returns the Past/Running 10 contests
+async function getPastContests(){
+    const MAX_CONTESTS_TO_RETURN=10;
+    try{
+        let pastContests=[];
+
+        let response=await fetch("https://codeforces.com/api/contest.list");
+        response=await response.json();
+        let data=response.result;
+
+        for(let i=0;i<data.length;i++){
+            let contest=data[i];
+
+            if(contest.phase!="FINISHED") continue;
+
+            pastContests.push({
+                "id" : contest.id,
+                "type" : determineContestType(contest.name),
+                "name": contest.name,
+                "startTime" : contest.startTimeSeconds,
+                "relativeTime" : contest.relativeTimeSeconds
+            });
+
+            if(pastContests.length==MAX_CONTESTS_TO_RETURN) break;
+        }
+
+        return pastContests;
+    }
+    catch(error){
+        console.log("Couldn't fetch contests list");
+        console.log(error);
+        return [];
+    }
+      
+}
+
 module.exports={
     ContestType: ContestType,
-    getUpcomingContests: getUpcomingContests
+    getUpcomingContests: getUpcomingContests,
+    getPastContests: getPastContests
 };
