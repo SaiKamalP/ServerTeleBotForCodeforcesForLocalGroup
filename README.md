@@ -24,7 +24,7 @@ To select what type of contests to push notifications update `CONTEST_TYPES_TO_I
 
 We don't want to commit the databaseFiles, to make this happen automatically run 
 
-`git update-index --assume-unchanged databaseFiles/*`
+`git update-index --skip-worktree databaseFiles/*`
 
 This should prevent the files from being committed.
 
